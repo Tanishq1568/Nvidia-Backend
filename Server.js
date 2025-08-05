@@ -280,6 +280,9 @@ app.delete("/reviews/:id", async (req, res) => {
 });
 
 
+app.get("/",(req,res)=>{
+  res.JSON({status:true})
+})
 
 
 
