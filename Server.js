@@ -6,7 +6,12 @@ const mongoose = require("mongoose");
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "https://nvidia-fend.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -287,5 +292,5 @@ app.get("/",(req,res)=>{
 
 
 app.listen(8000, () => {
-  console.log("Server started at http://localhost:8000");
+  console.log("Server started at https://nvidia-backend-xi.vercel.app");
 });
