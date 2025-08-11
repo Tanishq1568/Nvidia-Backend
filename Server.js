@@ -8,14 +8,6 @@ const app = express();
 // Middlewares
 app.use(cors({
   origin: "https://nvidia-fend.vercel.app",
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // allow all you might use
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
-
-// Explicit preflight handling
-app.options("*", cors({
-  origin: "https://nvidia-fend.vercel.app",
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
