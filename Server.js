@@ -8,13 +8,18 @@ const app = express();
 // Middlewares
 app.use(cors({
   origin: "https://nvidia-fend.vercel.app",
-  methods: ["GET", "POST", "OPTIONS","DELETE"],
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"], // allow all you might use
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
-}))
+}));
 
-
-app.options("*", cors());
+// Explicit preflight handling
+app.options("*", cors({
+  origin: "https://nvidia-fend.vercel.app",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
