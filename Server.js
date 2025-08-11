@@ -7,9 +7,8 @@ const app = express();
 
 // Middlewares
 app.use(cors({
-  origin: "https://nvidia-fend.vercel.app",
-  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  origin: "https://nvidia-fend.vercel.app", // your frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
