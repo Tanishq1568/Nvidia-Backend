@@ -41,12 +41,12 @@ app.post("/signup", async (req, res) => {
   let a = req.body;
   console.log(req.body);
 
-  let userdata = await user.insertOne({
-    firstname: a.firstname,
-    lastname: a.lastname,
-    email: a.email,
-    password: a.password,
-  });
+  let userdata = await user.create({
+  firstname: a.firstname,
+  lastname: a.lastname,
+  email: a.email,
+  password: a.password,
+});
   
   let result = await userdata.save();
 
