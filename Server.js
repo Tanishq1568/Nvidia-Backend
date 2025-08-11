@@ -6,12 +6,7 @@ const mongoose = require("mongoose");
 const app = express();
 
 // Middlewares
-app.use(cors({
-  origin: "https://nvidia-fend.vercel.app",
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
+app.use(cors)
 
 app.options("*", cors());
 
