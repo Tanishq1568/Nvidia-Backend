@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 
 const app = express();
 
-<<<<<<< HEAD
 app.use(cors({
   origin: process.env.FRONTEND_URL,
   methods: ["GET", "POST", "PUT", "DELETE"],
@@ -13,43 +12,6 @@ app.use(cors({
 }));
 
 mongoose.connect(process.env.MONGO_URI, {
-=======
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://nvidia-fend.vercel.app"
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true
-}));
-
-// Handle all OPTIONS requests safely
-app.use((req, res, next) => {
-  if (req.method === "OPTIONS") {
-    res.header("Access-Control-Allow-Origin", req.headers.origin || "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, token");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Credentials", "true");
-    return res.sendStatus(200);
-  }
-  next();
-});
-
-
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// MongoDB Connection
-mongoose.connect("mongodb+srv://tanishqgarg57:SGSeic2Kj3Ot8MI2@tanishq.e51sp0t.mongodb.net/Nvidia", {
->>>>>>> 35327c2889be3a71258f2adeefc2ec524d84a7b5
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log("MongoDB connected"))
@@ -319,9 +281,6 @@ app.get("/",(req,res)=>{
 })
 
 
-const PORT = 5000;
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+module.exports = app;
 
