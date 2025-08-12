@@ -1,31 +1,22 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const app = express();
 
-// Middlewares
 app.use(cors({
-  origin: "https://nvidia-fend.vercel.app", // your frontend domain
+  origin: process.env.FRONTEND_URL,
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// MongoDB Connection
-mongoose.connect("mongodb+srv://tanishqgarg57:SGSeic2Kj3Ot8MI2@tanishq.e51sp0t.mongodb.net/Nvidia", {
+mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log("MongoDB connected.");
-})
-.catch((err) => {
-  console.error("MongoDB connection error:", err);
-});
+  useUnifiedTopology: true
+}).then(() => console.log("MongoDB connected"))
+.catch(err => console.error(err));
+
 
 // Import User Schema
 const user = require("./model/User");
