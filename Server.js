@@ -5,8 +5,11 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+// Clean up the FRONTEND_URL just in case
+const frontendURL = (process.env.FRONTEND_URL || "").trim().replace(/\/$/, "");
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL,
+  origin: frontendURL,
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -14,8 +17,10 @@ app.use(cors({
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-}).then(() => console.log("MongoDB connected"))
+})
+.then(() => console.log("MongoDB connected"))
 .catch(err => console.error(err));
+
 
 
 // Import User Schema
