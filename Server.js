@@ -5,6 +5,10 @@ const mongoose = require("mongoose");
 
 const app = express();
 
+// Body parsers (important)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Clean up the FRONTEND_URL just in case
 const frontendURL = (process.env.FRONTEND_URL || "").trim().replace(/\/$/, "");
 
